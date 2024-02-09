@@ -1,9 +1,16 @@
 // Uncomment the code below and write your tests
-// import { simpleCalculator, Action } from './index';
+import { simpleCalculator, Action } from './index';
 
 describe('simpleCalculator tests', () => {
   test('should add two numbers', () => {
-    // Write your test here
+    const input = {
+      a: 0.1,
+      b: 0.2,
+      action: Action.Add,
+    };
+    const expectedResult = 0.3;
+
+    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
   });
 
   test('should subtract two numbers', () => {
