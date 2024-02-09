@@ -8,9 +8,9 @@ describe('simpleCalculator tests', () => {
       b: 0.2,
       action: Action.Add,
     };
-    const expectedResult = 0.3;
+    const expectedResult = input.a + input.b;
 
-    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
+    expect(simpleCalculator(input)).toBe(expectedResult);
   });
 
   test('should subtract two numbers', () => {
@@ -19,9 +19,9 @@ describe('simpleCalculator tests', () => {
       b: 0.2,
       action: Action.Subtract,
     };
-    const expectedResult = 2.8;
+    const expectedResult = input.a - input.b;
 
-    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
+    expect(simpleCalculator(input)).toBe(expectedResult);
   });
 
   test('should multiply two numbers', () => {
@@ -30,13 +30,20 @@ describe('simpleCalculator tests', () => {
       b: 0.2,
       action: Action.Multiply,
     };
-    const expectedResult = 0.6;
+    const expectedResult = input.a * input.b;
 
-    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
+    expect(simpleCalculator(input)).toBe(expectedResult);
   });
 
   test('should divide two numbers', () => {
-    // Write your test here
+    const input = {
+      a: 3,
+      b: 0.2,
+      action: Action.Divide,
+    };
+    const expectedResult = input.a / input.b;
+
+    expect(simpleCalculator(input)).toBe(expectedResult);
   });
 
   test('should exponentiate two numbers', () => {
