@@ -4,8 +4,8 @@ import {
   throwCustomError,
   resolveValue,
   MyAwesomeError,
+  rejectCustomError,
 } from './index';
-// import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
@@ -54,6 +54,11 @@ describe('throwCustomError', () => {
 
 describe('rejectCustomError', () => {
   test('should reject custom error', async () => {
-    // Write your test here
+    expect.assertions(1);
+    try {
+      await rejectCustomError();
+    } catch (error) {
+      expect(error instanceof MyAwesomeError).toBeTruthy();
+    }
   });
 });
