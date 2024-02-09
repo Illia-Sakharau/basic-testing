@@ -25,7 +25,14 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should multiply two numbers', () => {
-    // Write your test here
+    const input = {
+      a: 3,
+      b: 0.2,
+      action: Action.Multiply,
+    };
+    const expectedResult = 0.6;
+
+    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
   });
 
   test('should divide two numbers', () => {
