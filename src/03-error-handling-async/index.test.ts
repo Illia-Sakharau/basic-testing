@@ -1,5 +1,5 @@
 // Uncomment the code below and write your tests
-import { resolveValue } from './index';
+import { throwError, resolveValue } from './index';
 // import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
 
 describe('resolveValue', () => {
@@ -15,7 +15,14 @@ describe('resolveValue', () => {
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-    // Write your test here
+    const message = 'Some message';
+    try {
+      throwError(message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        expect(JSON.stringify(error.message)).toMatch(message);
+      }
+    }
   });
 
   test('should throw error with default message if message is not provided', () => {
