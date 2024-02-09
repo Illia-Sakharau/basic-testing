@@ -1,5 +1,10 @@
 // Uncomment the code below and write your tests
-import { throwError, resolveValue } from './index';
+import {
+  throwError,
+  throwCustomError,
+  resolveValue,
+  MyAwesomeError,
+} from './index';
 // import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
 
 describe('resolveValue', () => {
@@ -39,7 +44,11 @@ describe('throwError', () => {
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-    // Write your test here
+    try {
+      throwCustomError();
+    } catch (error: unknown) {
+      expect(error instanceof MyAwesomeError).toBeTruthy();
+    }
   });
 });
 
