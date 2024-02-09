@@ -14,7 +14,14 @@ describe('simpleCalculator tests', () => {
   });
 
   test('should subtract two numbers', () => {
-    // Write your test here
+    const input = {
+      a: 3,
+      b: 0.2,
+      action: Action.Subtract,
+    };
+    const expectedResult = 2.8;
+
+    expect(simpleCalculator(input)).toBeCloseTo(expectedResult);
   });
 
   test('should multiply two numbers', () => {
