@@ -26,7 +26,14 @@ describe('throwError', () => {
   });
 
   test('should throw error with default message if message is not provided', () => {
-    // Write your test here
+    const defaultMessage = 'Oops!';
+    try {
+      throwError();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        expect(JSON.stringify(error.message)).toMatch(defaultMessage);
+      }
+    }
   });
 });
 
