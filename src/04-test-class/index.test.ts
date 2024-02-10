@@ -10,7 +10,7 @@ const initialBalance = 10;
 let testAccount: BankAccount;
 
 describe('BankAccount', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     testAccount = getBankAccount(initialBalance);
   });
 
@@ -54,7 +54,9 @@ describe('BankAccount', () => {
   });
 
   test('should withdraw money', () => {
-    // Write your test here
+    testAccount.withdraw(initialBalance);
+
+    expect(testAccount.getBalance()).toBe(0);
   });
 
   test('should transfer money', () => {
