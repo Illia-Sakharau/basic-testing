@@ -60,7 +60,11 @@ describe('BankAccount', () => {
   });
 
   test('should transfer money', () => {
-    // Write your test here
+    const destAccount = getBankAccount(initialBalance);
+    testAccount.transfer(initialBalance, destAccount);
+
+    expect(destAccount.getBalance()).toBe(initialBalance * 2);
+    expect(testAccount.getBalance()).toBe(0);
   });
 
   test('fetchBalance should return number in case if request did not failed', async () => {
