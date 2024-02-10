@@ -1,5 +1,5 @@
 // Uncomment the code below and write your tests
-import { getBankAccount, BankAccount } from '.';
+import { getBankAccount, BankAccount, InsufficientFundsError } from '.';
 
 const initialBalance = 10;
 let testAccount: BankAccount;
@@ -11,7 +11,11 @@ describe('BankAccount', () => {
   });
 
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
-    // Write your test here
+    try {
+      testAccount.withdraw(20);
+    } catch (error) {
+      expect(error instanceof InsufficientFundsError).toBeTruthy();
+    }
   });
 
   test('should throw error when transferring more than balance', () => {
