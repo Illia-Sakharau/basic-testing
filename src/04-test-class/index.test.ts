@@ -3,7 +3,7 @@ import {
   getBankAccount,
   BankAccount,
   InsufficientFundsError,
-  // TransferFailedError,
+  TransferFailedError,
 } from '.';
 
 const initialBalance = 10;
@@ -35,7 +35,12 @@ describe('BankAccount', () => {
   });
 
   test('should throw error when transferring to the same account', () => {
-    // Write your test here
+    expect.assertions(1);
+    try {
+      testAccount.transfer(20, testAccount);
+    } catch (error) {
+      expect(error instanceof TransferFailedError).toBeTruthy();
+    }
   });
 
   test('should deposit money', () => {
