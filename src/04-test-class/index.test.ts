@@ -10,15 +10,18 @@ const initialBalance = 10;
 let testAccount: BankAccount;
 
 describe('BankAccount', () => {
-  test('should create account with initial balance', () => {
+  beforeAll(() => {
     testAccount = getBankAccount(initialBalance);
+  });
+
+  test('should create account with initial balance', () => {
     expect(testAccount.getBalance()).toBe(initialBalance);
   });
 
   test('should throw InsufficientFundsError error when withdrawing more than balance', () => {
     expect.assertions(1);
     try {
-      testAccount.withdraw(20);
+      testAccount.withdraw(initialBalance * 2);
     } catch (error) {
       expect(error instanceof InsufficientFundsError).toBeTruthy();
     }
@@ -28,7 +31,7 @@ describe('BankAccount', () => {
     const destAccount = getBankAccount(10);
     expect.assertions(1);
     try {
-      testAccount.transfer(20, destAccount);
+      testAccount.transfer(initialBalance * 2, destAccount);
     } catch (error) {
       expect(error instanceof InsufficientFundsError).toBeTruthy();
     }
@@ -44,7 +47,10 @@ describe('BankAccount', () => {
   });
 
   test('should deposit money', () => {
-    // Write your test here
+    const deposit = 20;
+    testAccount.deposit(deposit);
+
+    expect(testAccount.getBalance()).toBe(initialBalance + deposit);
   });
 
   test('should withdraw money', () => {
