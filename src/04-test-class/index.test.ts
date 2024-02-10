@@ -4,6 +4,7 @@ import {
   BankAccount,
   InsufficientFundsError,
   TransferFailedError,
+  SynchronizationFailedError,
 } from '.';
 
 jest.mock('lodash', () => ({
@@ -88,6 +89,17 @@ describe('BankAccount', () => {
   });
 
   test('should throw SynchronizationFailedError if fetchBalance returned null', async () => {
-    // Write your tests here
+    const spy = jest
+      .spyOn(testAccount, 'fetchBalance')
+      .mockImplementation(() => new Promise((res) => res(null)));
+    expect.assertions(1);
+
+    try {
+      await testAccount.synchronizeBalance();
+    } catch (error) {
+      expect(error instanceof SynchronizationFailedError).toBeTruthy();
+    }
+
+    spy.mockRestore();
   });
 });
