@@ -6,6 +6,9 @@ import {
   TransferFailedError,
 } from '.';
 
+jest.mock('lodash', () => ({
+  random: () => 1,
+}));
 const initialBalance = 10;
 let testAccount: BankAccount;
 
@@ -68,7 +71,8 @@ describe('BankAccount', () => {
   });
 
   test('fetchBalance should return number in case if request did not failed', async () => {
-    // Write your tests here
+    const resp = await testAccount.fetchBalance();
+    expect(resp).toBe(1);
   });
 
   test('should set new balance if fetchBalance returned number', async () => {
