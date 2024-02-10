@@ -18,6 +18,10 @@ describe('BankAccount', () => {
     testAccount = getBankAccount(initialBalance);
   });
 
+  afterAll(() => {
+    jest.unmock('lodash');
+  });
+
   test('should create account with initial balance', () => {
     expect(testAccount.getBalance()).toBe(initialBalance);
   });
